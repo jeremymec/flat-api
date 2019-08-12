@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user
+  before_action :set_user, only: [:show, :update, :destroy]
 
   def index
     @users = User.all
@@ -28,11 +28,11 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.permit(:name, :firebase_uid)
+    params.permit(:uid, :name)
   end
 
   def set_user
-    @user = User.find(params[:id])
+    @user = User.find(params[:uid])
   end
 
 end

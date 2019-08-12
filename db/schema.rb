@@ -18,11 +18,12 @@ ActiveRecord::Schema.define(version: 20190811080856) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", id: false, force: :cascade do |t|
+    t.string "uid", null: false
     t.string "name"
-    t.string "firebase_uid"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["uid"], name: "index_users_on_uid", unique: true
   end
 
   create_table "users_flats", force: :cascade do |t|
