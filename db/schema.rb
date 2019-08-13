@@ -10,12 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190811080856) do
+ActiveRecord::Schema.define(version: 20190813095441) do
 
   create_table "flats", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "invite"
+    t.index ["invite"], name: "index_flats_on_invite", unique: true
   end
 
   create_table "users", id: false, force: :cascade do |t|
