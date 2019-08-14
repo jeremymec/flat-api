@@ -7,7 +7,9 @@ class FlatsController < ApplicationController
   end
 
   def create
-    @flat = Flat.create!(flat_params)
+    user = User.find_by_uid(params[:user_uid])
+    @flat = user.create_flat(flat_params)
+    user.save
     json_response(@flat, :created)
   end
 
@@ -15,9 +17,14 @@ class FlatsController < ApplicationController
     json_response(@flat)
   end
 
+  def flat_by_invite
+    @flat = Flat.find_by_invite(params[:invite])
+    json_response(@flat)
+  end
+
   def update
     @flat.update(flat_params)
-    head :no_content
+    json_response(@flat)
   end
 
   def destroy
@@ -28,11 +35,11 @@ class FlatsController < ApplicationController
   private
 
   def flat_params
-    params.permit(:name)
+    params.permit(:name, :invite)
   end
 
   def set_flat
-    flat = Flat.find(params[:id])
+    @flat = User.find_by_uid(params[:user_uid]).flat
   end
 
 end

@@ -17,7 +17,7 @@ class UsersController < ApplicationController
 
   def update
     @user.update(user_params)
-    head :no_content
+    json_response(@user)
   end
 
   def destroy
@@ -28,7 +28,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.permit(:uid, :name)
+    params.permit(:uid, :name, :flat_id)
   end
 
   def set_user

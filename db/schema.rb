@@ -23,18 +23,11 @@ ActiveRecord::Schema.define(version: 20190813095441) do
   create_table "users", id: false, force: :cascade do |t|
     t.string "uid", null: false
     t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["uid"], name: "index_users_on_uid", unique: true
-  end
-
-  create_table "users_flats", force: :cascade do |t|
-    t.integer "user_id"
     t.integer "flat_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["flat_id"], name: "index_users_flats_on_flat_id"
-    t.index ["user_id"], name: "index_users_flats_on_user_id"
+    t.index ["flat_id"], name: "index_users_on_flat_id"
+    t.index ["uid"], name: "index_users_on_uid", unique: true
   end
 
 end

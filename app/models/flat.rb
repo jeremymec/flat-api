@@ -1,8 +1,7 @@
 require 'securerandom'
 
 class Flat < ApplicationRecord
-  has_many :users_flats
-  has_many :users, :through => :users_flats
+  has_many :users
 
   before_create :set_invite_code
 
