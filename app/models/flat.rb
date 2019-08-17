@@ -2,6 +2,7 @@ require 'securerandom'
 
 class Flat < ApplicationRecord
   has_many :users
+  has_one :todo
 
   before_create :set_invite_code
 

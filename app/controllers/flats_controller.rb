@@ -9,6 +9,7 @@ class FlatsController < ApplicationController
   def create
     user = User.find_by_uid(params[:user_uid])
     @flat = user.create_flat(flat_params)
+    @flat.create_todo
     user.save
     json_response(@flat, :created)
   end

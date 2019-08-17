@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190813095441) do
+ActiveRecord::Schema.define(version: 20190817102530) do
 
   create_table "flats", force: :cascade do |t|
     t.string "name"
@@ -18,6 +18,22 @@ ActiveRecord::Schema.define(version: 20190813095441) do
     t.datetime "updated_at", null: false
     t.string "invite"
     t.index ["invite"], name: "index_flats_on_invite", unique: true
+  end
+
+  create_table "todo_items", force: :cascade do |t|
+    t.string "content"
+    t.date "due_date"
+    t.integer "todo_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["todo_id"], name: "index_todo_items_on_todo_id"
+  end
+
+  create_table "todos", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "flat_id"
+    t.index ["flat_id"], name: "index_todos_on_flat_id"
   end
 
   create_table "users", id: false, force: :cascade do |t|
