@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :users, param: :uid do
     resource :flats do
       resource :todos do
-        resource :todo_items
+        resources :todo_items
       end
     end
   end
